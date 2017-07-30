@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.may.equipmentlevel.command.EquipmentLevelCommand;
+import me.may.equipmentlevel.hook.PlaceHoderAPIHook;
 import me.may.equipmentlevel.language.LanguageManager;
 
 public class Entry extends JavaPlugin {
@@ -27,6 +28,10 @@ public class Entry extends JavaPlugin {
 		levelTag = getConfig().getString("Equipment.Tag").replaceAll("&", "§");
 		
 		manager = new LanguageManager(getConfig());
+		
+		if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null){
+			new PlaceHoderAPIHook(instance).hook();
+		}
 	}
 	
 	/**

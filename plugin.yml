@@ -1,7 +1,8 @@
 name: EquipmentLevel
 main: me.may.equipmentlevel.Entry
-version: 1.0
+version: 1.1
 author: May_Speed
+softdepend: [PlaceholderAPI]
 commands:
   el: 
     description: EquipmentPlugin's Main Command
