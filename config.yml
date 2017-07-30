@@ -1,0 +1,13 @@
+#以下为检测的关键字
+#请Lore设计成 关键字: %等级%
+#冒号必须为英文小写半角的冒号 且 冒号的右边只允许出现数字!(可以用颜色代码)
+Equipment:
+  Tag: "装备等级"
+Tips:
+  IfSenderIsNotPlayer: "&f你必须是一名玩家"
+  ArgsTooLong: "&c参数过长!"
+  PlayerIsNotOnline: "&c玩家不在线"
+  #玩家查看自身装备等级
+  CheckPlayerSelfEquipmentLevel: "&f玩家 &a&l%player_name% &f的装备等级为: &e&l%level%"
+  #玩家查看对方的装备等级
+  CheckAnotherEquipMentLevel: "&f玩家 &a&l%target_name% &f的装备等级为: &e&l%level%"
