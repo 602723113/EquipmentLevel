@@ -1,6 +1,5 @@
 package me.may.equipmentlevel.api;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.may.equipmentlevel.Entry;
-import me.may.equipmentlevel.util.NMSUtils;
 
 public class EquipmentLevelAPI {
 
@@ -49,7 +47,6 @@ public class EquipmentLevelAPI {
 	public static double getItemLevel(ItemStack item) {
 		double level = 0D;
 		if (hasLevel(item)) {
-
 			// 遍历lore
 			for (String lore : item.getItemMeta().getLore()) {
 				// 删除颜色字符
@@ -63,7 +60,6 @@ public class EquipmentLevelAPI {
 					}
 				}
 			}
-
 		}
 		return level;
 	}
@@ -82,21 +78,14 @@ public class EquipmentLevelAPI {
 			return level;
 		}
 		// 之后取身上的装备
-		List<ItemStack> items = new ArrayList<ItemStack>();
-		for (int i = 0; i < player.getEquipment().getArmorContents().length; i++) {
-			items.add(player.getEquipment().getArmorContents()[i]);
-		}
-
-		// 以下调用了NMSUtils中的getItemInMainHand()做多版本兼容
-		items.add(NMSUtils.getItemInMainHand(player));
-
-		for (int i = 0; i < items.size(); i++) {
-			ItemStack itemStack = items.get(i);
+		ItemStack[] items = player.getEquipment().getArmorContents();
+		for (int i = 0; i < items.length; i++) {
+			ItemStack itemStack = items[i];
 			if (hasLevel(itemStack)) {
 				level = level + getItemLevel(itemStack);
 			}
 		}
-		return level;
-
+		//最后装备等级为  累计等级 / 装备个数
+		return level / items.length;
 	}
 }

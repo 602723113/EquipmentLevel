@@ -1,6 +1,6 @@
 name: EquipmentLevel
 main: me.may.equipmentlevel.Entry
-version: 1.1
+version: 1.2
 author: May_Speed
 softdepend: [PlaceholderAPI]
 commands:

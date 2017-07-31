@@ -29,6 +29,7 @@ public class Entry extends JavaPlugin {
 		
 		manager = new LanguageManager(getConfig());
 		
+		//挂钩PlaceholderAPI
 		if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null){
 			new PlaceHoderAPIHook(instance).hook();
 		}
