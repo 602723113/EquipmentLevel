@@ -79,13 +79,17 @@ public class EquipmentLevelAPI {
 		}
 		// 之后取身上的装备
 		ItemStack[] items = player.getEquipment().getArmorContents();
+		// NPE检查与装备数量检查
+		if (items == null || items.length == 0) {
+			return level;
+		}
 		for (int i = 0; i < items.length; i++) {
 			ItemStack itemStack = items[i];
 			if (hasLevel(itemStack)) {
 				level = level + getItemLevel(itemStack);
 			}
 		}
-		//最后装备等级为  累计等级 / 装备个数
+		// 最后装备等级为 累计等级 / 装备个数
 		return level / items.length;
 	}
 }
