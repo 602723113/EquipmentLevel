@@ -1,5 +1,6 @@
 package me.may.equipmentlevel.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,17 +80,28 @@ public class EquipmentLevelAPI {
 		}
 		// 之后取身上的装备
 		ItemStack[] items = player.getEquipment().getArmorContents();
+
 		// NPE检查与装备数量检查
 		if (items == null || items.length == 0) {
 			return level;
 		}
+
+		List<ItemStack> itemList = new ArrayList<ItemStack>();
 		for (int i = 0; i < items.length; i++) {
 			ItemStack itemStack = items[i];
+			if (itemStack == null) {
+				continue;
+			}
+			itemList.add(itemStack);
+		}
+
+		for (int i = 0; i < itemList.size(); i++) {
+			ItemStack itemStack = itemList.get(i);
 			if (hasLevel(itemStack)) {
 				level = level + getItemLevel(itemStack);
 			}
 		}
 		// 最后装备等级为 累计等级 / 装备个数
-		return level / items.length;
+		return level / itemList.size();
 	}
 }
